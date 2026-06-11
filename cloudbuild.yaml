@@ -16,6 +16,10 @@ steps:
       - COMMIT_SHA=$COMMIT_SHA
       - --build-arg
       - SHORT_SHA=$SHORT_SHA
+
 substitutions:
   _BUILD_TAG: ${COMMIT_SHA}
   _KANIKO_TAG: latest
+
+options:
+  logging: CLOUD_LOGGING_ONLY
