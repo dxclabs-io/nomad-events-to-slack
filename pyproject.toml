@@ -20,6 +20,8 @@ version_files = [
 tag_format = "v$version"
 changelog_file = "docs/changelog.rst"
 update_changelog_on_bump = true
+bump_pattern = "^(feat|fix|perf|refactor|build|BREAKING CHANGE)"
+bump_map = {"^.+!" = "MAJOR", "BREAKING CHANGE" = "MAJOR", "^feat" = "MINOR", "^(fix|perf|refactor|build)" = "PATCH"}
 
 [tool.pytest.ini_options]
 pythonpath = [".", "src"]

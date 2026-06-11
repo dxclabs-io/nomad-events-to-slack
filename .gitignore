@@ -39,3 +39,7 @@ tmpclaude-*
 
 # OS Stupidity
 *~
+
+# Logs
+logs/*
+!/logs/.gitkeep
