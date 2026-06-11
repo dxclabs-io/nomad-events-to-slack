@@ -1,6 +1,15 @@
 CHANGELOG
 ###############
 
+v0.7.0 (2026-06-11)
+===================
+
+Feat
+----
+
+- per-job-type termination reporting rules (#6)
+- key event accumulator by allocation ID (#5)
+
 v0.6.0 (2026-03-17)
 ===================
 
