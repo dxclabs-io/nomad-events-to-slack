@@ -12,16 +12,20 @@ dependencies = [
 ]
 
 [tool.commitizen]
-name = "cz_conventional_commits"
+name = "cz_customize"
 version = "0.7.0"
 version_files = [
     "pyproject.toml:version"
 ]
 tag_format = "v$version"
+bump_message = "bump: version $current_version → $new_version"
 changelog_file = "docs/changelog.rst"
 update_changelog_on_bump = true
+
+[tool.commitizen.customize]
 bump_pattern = "^(feat|fix|perf|refactor|build|BREAKING CHANGE)"
 bump_map = {"^.+!" = "MAJOR", "BREAKING CHANGE" = "MAJOR", "^feat" = "MINOR", "^(fix|perf|refactor|build)" = "PATCH"}
+schema_pattern = '(?s)(build|bump|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\(\S+\))?!?: ([^\n\r]+)((\n\n.*)|(\s*))?$'
 
 [tool.pytest.ini_options]
 pythonpath = [".", "src"]
