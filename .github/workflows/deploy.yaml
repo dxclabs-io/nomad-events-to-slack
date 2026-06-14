@@ -2,8 +2,8 @@ name: deploy
 
 on:
   push:
-    branches:
-      - master
+    tags:
+      - 'v*'
   pull_request:
     types: [opened, reopened, synchronize, ready_for_review]
 
@@ -57,24 +57,22 @@ jobs:
           curl --fail -o output -X PUT -H "Content-Type: text/plain" -H "CF-Access-Client-Id: ${{ vars.CF_ACCESS_CLIENT_ID}}" -H "CF-Access-Client-Secret: ${{ secrets.CF_ACCESS_CLIENT_SECRET}}" -H "X-Consul-Token: ${{ secrets.CONSUL_TOKEN }}" --data "${{ env.COMMIT_SHA }}" "https://api.r2unit.io/v1/deploy/${{ env.DEPLOY_PATH }}/${{ env.BRANCH_NAME }}"
           cat output
 
-  deploy_branch:
+  deploy_tag:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    name: Deploy Branch on Nomad
-    if: github.event_name != 'pull_request'
+    name: Deploy Tag on Nomad
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
     steps:
-      - name: Wait for build, lint and test checks
+      - name: Wait for build checks
         uses: lewagon/wait-on-check-action@v1.8.0
         with:
           ref: ${{ env.COMMIT_SHA }}
-          running-workflow-name: 'Deploy Branch on Nomad'
+          running-workflow-name: 'Deploy Tag on Nomad'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           wait-interval: 10
 
-      - name: Set safe branch name
-        run: |
-          export BRANCH_NAME=$(echo "${{ env.UNSAFE_BRANCH_NAME }}" | sed 's|/|-|g' | sed 's|[^a-zA-Z0-9_-]||g')
-          echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+      - name: Set branch name
+        run: echo "BRANCH_NAME=master" >> $GITHUB_ENV
 
       - name: Set deploy path
         run: |
@@ -95,7 +93,7 @@ jobs:
           echo "CONSUL_TOKEN is available: ${CONSUL_TOKEN:+Yes}"
           echo "COMMIT_SHA: ${COMMIT_SHA}"
 
-      - name: Trigger Deploy Branch
+      - name: Trigger Deploy Tag
         run: |
           echo "deploying ${{ env.DEPLOY_PATH }} ${{ env.BRANCH_NAME }} ${{ env.COMMIT_SHA }}"
           curl --version
