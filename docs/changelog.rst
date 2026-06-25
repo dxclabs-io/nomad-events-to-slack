@@ -1,6 +1,13 @@
 CHANGELOG
 ###############
 
+v0.8.2 (2026-06-25)
+===================
+
+
+- build: bump ruff to 0.15.x, requests to >=2.33.0, actions/checkout to v7 (#28)
+- Co-authored-by: Claude Sonnet 4.6 <noreply@anthropic.com>
+
 v0.8.1 (2026-06-25)
 ===================
 
