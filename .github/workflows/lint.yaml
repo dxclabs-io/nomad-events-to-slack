@@ -13,29 +13,23 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        python-version: [3.12.x]
+        python-version: ["3.12"]
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v7
 
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v6
+      - uses: astral-sh/setup-uv@v6
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Install uv
-        run: pip install uv
-
       - name: Install dependencies
-        run: |
-          uv pip install --system --requirements requirements.txt
-          uv pip install --system --requirements requirements.linters.txt
+        run: uv sync --frozen --only-group linters
 
-      - run: shopt -s globstar && pyupgrade --py312-plus **/*.py
+      - run: shopt -s globstar && uv run pyupgrade --py312-plus **/*.py
 
-      - run: ruff format --diff .
+      - run: uv run ruff format --diff .
 
-      - run: codespell . --ignore-words .codespellignore
+      - run: uv run codespell . --ignore-words .codespellignore
 
-      - run: deptry .
+      - run: uv run deptry .
