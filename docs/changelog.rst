@@ -1,6 +1,57 @@
 CHANGELOG
 ###############
 
+v0.8.1 (2026-06-25)
+===================
+
+
+- Merge pull request #26 from dxclabs-io/build/migrate-poetry-to-uv
+- build: migrate from poetry to uv
+- ci: fix python-version format for setup-uv
+- Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
+- build: migrate from poetry to uv
+- Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
+- build: add deptry, CI improvements, commitizen version_provider (#25)
+- * build: add deptry, CI improvements, commitizen version_provider
+- - Add deptry >=0.25.1,<0.26.0 to linters group with package_module_name_map
+- Add deptry pre-commit hook (francescorubbo/deptry-pre-commit v0.25.1)
+- Add commitizen pre-commit hook (was missing)
+- Add deptry step to lint.yaml
+- Unchained lint and tests workflows from ruff (now run independently on PR)
+- Remove Gr1N/setup-poetry from bump.yaml; use pip install commitizen directly
+- commitizen: add version_scheme=semver2, version_provider=pep621
+- actions/checkout v6 → v7 across all workflows
+- Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
+- * build: regenerate requirements files after poetry lock
+- Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
+- * build: bump pytest >=9.0.3 to cover dependabot alert
+- Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
+- * chore: remove RELEASE.md
+- * ci: add explicit permissions to deploy.yaml
+- ---------
+- Co-authored-by: Claude Sonnet 4.6 <noreply@anthropic.com>
+- Merge pull request #23 from dxclabs-io/ci-developer-connect
+- ci: fix bump/deploy workflows and commitizen config for Developer Connect
+- ci: fix bump/deploy workflows and commitizen config for Developer Connect
+- bump.yaml: add bump: guard, workflow_dispatch, fix exit code trap to
+handle both 3 and 21, push commit and tags separately.
+- deploy.yaml: replace deploy_branch with deploy_tag triggered on v* tag
+push; remove push-to-master trigger; preserve CONSUL_ROOT/DEPLOY_PATH
+logic in deploy_tag.
+- pyproject.toml: switch commitizen to cz_customize; move bump_pattern
+and bump_map to customize section; add schema_pattern and bump_message.
+- Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
+
+v0.8.0 (2026-06-11)
+===================
+
+
+- bump: version 0.6.0 → 0.7.0
+- Package updates (#22)
+- * ci: Pre-commit autoupdate. Updates to ruff and poetry
+- * test: add pytest-cov to pyproject.toml tests group
+- * build: update poetry requirements and requirements files
+
 v0.7.0 (2026-06-11)
 ===================
 
