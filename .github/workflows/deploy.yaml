@@ -11,6 +11,10 @@ env:
   COMMIT_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
   UNSAFE_BRANCH_NAME: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref_name }}
 
+permissions:
+  checks: read
+  actions: read
+
 jobs:
   deploy_pr:
     runs-on: ubuntu-latest
