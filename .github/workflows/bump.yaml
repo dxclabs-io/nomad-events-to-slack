@@ -22,7 +22,7 @@ jobs:
           owner: ${{ github.repository_owner }}
 
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
           token: ${{ steps.app-token.outputs.token }}
@@ -38,13 +38,8 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Set up poetry
-        uses: Gr1N/setup-poetry@v9
-        with:
-          poetry-preview: true
-
       - name: Install commitizen
-        run: poetry install --only dev --no-interaction
+        run: pip install commitizen
 
       - name: Configure git
         run: |
@@ -53,7 +48,7 @@ jobs:
 
       - name: Bump version and push tag
         run: |
-          poetry run cz bump --yes --changelog || EXIT_CODE=$?
+          cz bump --yes --changelog || EXIT_CODE=$?
           if [ "${EXIT_CODE}" = "3" ] || [ "${EXIT_CODE}" = "21" ]; then
             echo "No commits to bump, skipping"
             exit 0
