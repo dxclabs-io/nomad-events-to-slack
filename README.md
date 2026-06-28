@@ -3,7 +3,7 @@
 [![FivexL](https://releases.fivexl.io/fivexlbannergit.jpg)](https://fivexl.io/)
 
 # Hashicorp Nomad events to Slack
-Get nomad's allocations. Retrieve events from the tasks inside allocations. Post events to Slack channel as a Slack bot using incoming web hooks.  
+Get nomad's allocations. Retrieve events from the tasks inside allocations. Post events to Slack channel as a Slack bot using incoming web hooks.
 It is possible to filter events by node name, jobid, event type and event message.
 
 
@@ -21,7 +21,7 @@ Configuration is done via env variables
 * `CONSUL_KEY` - Set the Consul kv key which used to save events. `nomad/nomad-events-to-slack` is default.
 
 # Deployment
-Application can be launched using docker  
+Application can be launched using docker
 For example inside a Nomad. Don't forget to change Slack web hook url.
 ```hcl
 job "events-to-slack" {
@@ -77,13 +77,13 @@ CONSUL_CLIENT_CERT=/path/to/tls/client.crt
 CONSUL_CLIENT_KEY=/path/to/tls/client.key
 CONSUL_NAMESPACE=default
 ```
- 
 
-## Example of Event to Send: 
+
+## Example of Event to Send:
 ```
 {'AllocationID': '4f5c9fe9-7087-e213-6830-fc8e924db354', 'NodeName': 'node1', 'JobID': 'oom-killed', 'JobType': 'service',
- 'TaskGroup': 'oom-killed', 'TaskName': 'oom-task', 'Time': '2020-10-12 15:10:02', 'EventType': 'Not Restarting', 'EventMessage': '', 
- 'EventDisplayMessage': 'Exceeded allowed attempts 2 in interval 30m0s and mode is "fail"', 'EventDetails': 
+ 'TaskGroup': 'oom-killed', 'TaskName': 'oom-task', 'Time': '2020-10-12 15:10:02', 'EventType': 'Not Restarting', 'EventMessage': '',
+ 'EventDisplayMessage': 'Exceeded allowed attempts 2 in interval 30m0s and mode is "fail"', 'EventDetails':
  {'restart_reason': 'Exceeded allowed attempts 2 in interval 30m0s and mode is "fail"', 'fails_task': 'true'}}
 ```
 
