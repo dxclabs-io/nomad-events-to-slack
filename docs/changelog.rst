@@ -1,6 +1,20 @@
 CHANGELOG
 ###############
 
+v0.8.3 (2026-06-28)
+===================
+
+
+- build: migrate from pre-commit to prek (#32)
+- Replace .pre-commit-config.yaml with prek.toml. All hooks are
+equivalent; no-commit-to-branch replaces the custom bash local hook,
+and pre-commit is removed from dev dependencies. Aligned hook set with
+standard by adding check-executables-have-shebangs, mixed-line-ending,
+and name-tests-test.
+- Since ruff check is clean, lint.yaml is replaced with j178/prek-action
+and ruff.yaml is removed entirely.
+- Co-authored-by: Claude Sonnet 4.6 <noreply@anthropic.com>
+
 v0.8.2 (2026-06-25)
 ===================
 
