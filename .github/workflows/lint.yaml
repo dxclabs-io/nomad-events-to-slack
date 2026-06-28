@@ -6,30 +6,9 @@ on:
       - master
 
 jobs:
-  lint_python:
-
-    runs-on: ${{ matrix.os }}
+  lint:
+    runs-on: ubuntu-latest
     timeout-minutes: 5
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        python-version: ["3.12"]
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v7
-
-      - uses: astral-sh/setup-uv@v6
-        with:
-          python-version: ${{ matrix.python-version }}
-
-      - name: Install dependencies
-        run: uv sync --frozen --only-group linters
-
-      - run: shopt -s globstar && uv run pyupgrade --py312-plus **/*.py
-
-      - run: uv run ruff format --diff .
-
-      - run: uv run codespell . --ignore-words .codespellignore
-
-      - run: uv run deptry .
+      - uses: actions/checkout@v7
+      - uses: j178/prek-action@v2
