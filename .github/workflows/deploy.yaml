@@ -23,7 +23,7 @@ jobs:
     if: github.event_name == 'pull_request' && !github.event.pull_request.draft && github.actor != 'dependabot[bot]'
     steps:
       - name: Wait for build, lint and test checks
-        uses: lewagon/wait-on-check-action@v1.8.0
+        uses: lewagon/wait-on-check-action@v1.8.1
         with:
           ref: ${{ env.COMMIT_SHA }}
           running-workflow-name: 'Deploy PR on Nomad'
@@ -68,7 +68,7 @@ jobs:
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
     steps:
       - name: Wait for build checks
-        uses: lewagon/wait-on-check-action@v1.8.0
+        uses: lewagon/wait-on-check-action@v1.8.1
         with:
           ref: ${{ env.COMMIT_SHA }}
           running-workflow-name: 'Deploy Tag on Nomad'
