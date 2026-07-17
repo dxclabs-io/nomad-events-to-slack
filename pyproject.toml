@@ -100,7 +100,7 @@ types = [
 ]
 
 linters = [
-    "codespell>=2.4.1,<3.0.0",
+    "codespell>=2.4.3,<3.0.0",
     "deptry>=0.25.1,<0.26.0",
     "pyupgrade>=3.20.0,<4.0.0",
     "ruff>=0.15.0,<0.16.0",
