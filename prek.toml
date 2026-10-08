@@ -3,26 +3,34 @@ default_install_hook_types = ["pre-commit", "commit-msg"]
 [default_language_version]
 python = "python3.12"
 
+# Native Rust implementations (offline, zero-setup - no repo to clone/install).
+# See `prek util list-builtins -v` for the full supported set.
 [[repos]]
-repo = "https://github.com/pre-commit/pre-commit-hooks"
-rev = "v6.0.0"
+repo = "builtin"
 hooks = [
   { id = "check-added-large-files" },
-  { id = "check-ast" },
   { id = "check-case-conflict" },
+  { id = "check-executables-have-shebangs" },
   { id = "check-json" },
   { id = "check-merge-conflict" },
   { id = "check-symlinks" },
   { id = "check-toml" },
   { id = "check-yaml" },
-  { id = "debug-statements" },
   { id = "detect-private-key" },
-  { id = "check-executables-have-shebangs" },
   { id = "end-of-file-fixer" },
   { id = "mixed-line-ending", args = ["--fix=lf"] },
-  { id = "name-tests-test", args = ["--django"] },
   { id = "no-commit-to-branch" },
   { id = "trailing-whitespace" },
+]
+
+# No native equivalent yet (Python-AST-aware checks) - still run via the real repo.
+[[repos]]
+repo = "https://github.com/pre-commit/pre-commit-hooks"
+rev = "v6.0.0"
+hooks = [
+  { id = "check-ast" },
+  { id = "debug-statements" },
+  { id = "name-tests-test", args = ["--django"] },
 ]
 
 [[repos]]
@@ -34,7 +42,7 @@ hooks = [
 
 [[repos]]
 repo = "https://github.com/astral-sh/ruff-pre-commit"
-rev = "v0.15.20"
+rev = "v0.16.10"
 hooks = [
   { id = "ruff", args = ["--fix", "--exit-non-zero-on-fix"] },
   { id = "ruff-format", args = ["--check"] },
@@ -42,7 +50,7 @@ hooks = [
 
 [[repos]]
 repo = "https://github.com/codespell-project/codespell"
-rev = "v2.4.2"
+rev = "v2.4.3"
 
 [[repos.hooks]]
 id = "codespell"
@@ -51,7 +59,7 @@ exclude = '\.(json|lock|pyc|toml)$|\.tox'
 
 [[repos]]
 repo = "https://github.com/astral-sh/uv-pre-commit"
-rev = "0.11.25"
+rev = "0.12.23"
 hooks = [
   { id = "uv-lock" },
 ]
@@ -65,7 +73,7 @@ hooks = [
 
 [[repos]]
 repo = "https://github.com/commitizen-tools/commitizen"
-rev = "v4.16.4"
+rev = "v4.19.2"
 
 [[repos.hooks]]
 id = "commitizen"
