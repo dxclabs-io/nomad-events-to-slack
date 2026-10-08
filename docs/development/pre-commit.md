@@ -49,7 +49,7 @@ Test with:
 pre-commit run --all-files
 ```
 
-Update pre-commit config and hooks with:
+Update hooks with:
 ```
 pre-commit autoupdate
 ```
