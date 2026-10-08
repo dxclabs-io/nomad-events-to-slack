@@ -1,3 +1,5 @@
+> **Archived.** This repo migrated from Poetry to Astral uv (2026-06-25). See `docs/development/windows venv.md` and `docs/devops/requirements uv.md` for the current uv-based workflow. Kept for reference only.
+
 ### Poetry
 
 put the python path in the vscode settings.json in the project
