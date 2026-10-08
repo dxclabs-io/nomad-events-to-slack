@@ -1,6 +1,48 @@
 CHANGELOG
 ###############
 
+v0.8.4 (2026-10-08)
+===================
+
+
+- build: October 2026 dependency, security and tooling updates (#43)
+- Same pass as esg-netsuite, esg-currentrms and gcp (#77).
+- - Security: urllib3 2.7.0 -> 2.8.0 (Dependabot alerts on uv.lock and
+  requirements.txt).
+- uv lock --upgrade, with the ruff cap raised to 0.16.x to match the
+  ruff-pre-commit hook; regenerate requirements.txt.
+- commitizen version_provider pep621 -> uv, so cz bump also updates the
+  version in uv.lock (CI's uv-lock hook failed lint after every
+  release). commitizen.md updated; checked with `cz bump --files-only`.
+- prek: the 13 pre-commit-hooks prek implements natively move to
+  `repo = "builtin"`; check-ast, debug-statements and name-tests-test
+  stay on pre-commit-hooks. autoupdate: ruff-pre-commit v0.16.10,
+  codespell v2.4.3, uv-pre-commit 0.12.23, commitizen v4.19.2.
+- Actions: setup-python v7, wait-on-check-action v1.9.1, setup-uv
+  v10.2.0 and prek-action v3.0.1 (exact tags; immutable releases).
+- Supersedes Dependabot #29, #33, #37-#41.
+- Co-authored-by: Claude Opus 5.5 <noreply@anthropic.com>
+- docs: bring dev docs up to date with uv, prek and commitizen (#42)
+- * docs: bring dev docs up to date with uv, prek and commitizen
+- Same docs layout as esg-netsuite, esg-currentrms and gcp:
+- - development/commitizen.md (new): release flow, bump mapping, version
+  source, and the current uv.lock phantom diff after each release.
+- development/windows venv.md (new): uv setup, running src/app.py with
+  its environment variables, VS Code. Takes over docs/devops/uv.md's
+  content (including `uv lock --upgrade-package`).
+- devops/requirements uv.md (new): `uv export` for the Docker image.
+- Move pre-commit.md to development/ (prek); archive poetry.md under
+  development/z_archive/. Drop docs/devops/uv.md, whose second copy of
+  the Poetry notes duplicated poetry.md.
+- Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+- * build: sync uv.lock with the 0.8.3 release
+- The bump to 0.8.3 updated pyproject.toml but not uv.lock (commitizen
+pep621 provider), so CI's uv-lock hook re-locks and fails lint on every
+PR. The October updates switch commitizen to the uv provider.
+- Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+- ---------
+- Co-authored-by: Claude Opus 5.5 <noreply@anthropic.com>
+
 v0.8.3 (2026-06-28)
 ===================
 
