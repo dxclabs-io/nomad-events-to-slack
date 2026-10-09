@@ -1,6 +1,21 @@
 CHANGELOG
 ###############
 
+v0.8.5 (2026-10-09)
+===================
+
+
+- fix: don't let Dependabot check runs block deploys (#44)
+- wait-on-check-action waits for every check on the commit. When a
+Dependabot run happens to fail on a release commit (e.g. a security
+update with no patched version to move to), its failed "Dependabot"
+check stops the tag deploy even though the image build succeeded. This
+happened in esg-current-rms-reports (v0.2.0) and showoff-mint (v4.182.0,
+v4.182.1).
+- Ignore the Dependabot check in both deploy jobs; it never says anything
+about whether a build can be deployed.
+- Co-authored-by: Claude Opus 5.5 <noreply@anthropic.com>
+
 v0.8.4 (2026-10-08)
 ===================
 
