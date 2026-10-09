@@ -27,6 +27,9 @@ jobs:
         with:
           ref: ${{ env.COMMIT_SHA }}
           running-workflow-name: 'Deploy PR on Nomad'
+          # Dependabot's own check runs (e.g. a failed security-update attempt) say nothing
+          # about whether this build can be deployed
+          ignore-checks: Dependabot
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           wait-interval: 10
 
@@ -72,6 +75,9 @@ jobs:
         with:
           ref: ${{ env.COMMIT_SHA }}
           running-workflow-name: 'Deploy Tag on Nomad'
+          # Dependabot's own check runs (e.g. a failed security-update attempt) say nothing
+          # about whether this build can be deployed
+          ignore-checks: Dependabot
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           wait-interval: 10
 
